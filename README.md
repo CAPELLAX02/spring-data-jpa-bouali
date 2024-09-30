@@ -53,11 +53,26 @@ Before you begin, ensure you have the following tools installed:
    ```bash
    docker run --name my_postgres -e POSTGRES_PASSWORD=123456 -d -p 5433:5432 postgres
 
-4. **Run the Spring Boot application:**
+4. **Configure your application.yaml**
+   - In your `src/main/resources/application.yaml` file, you need to configure the data source for PostgreSQL. Below is an example configuration with sensitive information hidden:
+   ```bash
+   spring:
+     datasource:
+       url: jdbc:postgresql://localhost:5433/data_jpa_db
+       username: your_username  # Replace with your PostgreSQL username
+       password: your_password  # Replace with your PostgreSQL password
+       driver-class-name: org.postgresql.Driver
+     jpa:
+       hibernate:
+         ddl-auto: create-drop
+       database: postgresql
+       show-sql: true
+
+5. **Run the Spring Boot application:**
    ```bash
    mvn spring-boot:run
 
-5. **Access the application:**
+6. **Access the application:**
    - The APIs will be accessible at `http://localhost:8080`.
    - PostgreSQL will run at `localhost:5433`.
 
