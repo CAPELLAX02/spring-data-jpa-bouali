@@ -58,8 +58,8 @@ Before you begin, ensure you have the following tools installed:
    mvn spring-boot:run
 
 5. **Access the application:**
-   The APIs will be accessible at `http://localhost:8080`.
-   PostgreSQL will run at `localhost:5433`.
+   - The APIs will be accessible at `http://localhost:8080`.
+   - PostgreSQL will run at `localhost:5433`.
 
 ## Contributing
 
