@@ -1,25 +1,25 @@
 package com.capellax.jpa.models;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
-
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity
-@Table(name = "AUTHOR_TABLE")
 public class Author {
 
     @Id
     @GeneratedValue
     private Integer id;
 
-    @Column(
-            name = "f_name",
-            length = 35
-    )
     private String firstName;
 
     private String lastName;
@@ -31,16 +31,5 @@ public class Author {
     private String email;
 
     private Integer age;
-
-    @Column(
-            updatable = false,
-            nullable = false
-    )
-    private LocalDateTime createdAt;
-
-    @Column(
-            insertable = false
-    )
-    private LocalDateTime lastModifiedAt;
 
 }
