@@ -1,9 +1,6 @@
 package com.capellax.jpa.models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -12,6 +9,7 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @Entity
+@Table(name = "AUTHOR_TABLE")
 public class Author {
 
     @Id
