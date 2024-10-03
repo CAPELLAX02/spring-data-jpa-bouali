@@ -1,12 +1,13 @@
 package com.capellax.jpa.models;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-// Quick note: default 'Integer' value is 'null',
-// whereas default 'int' value is '0'.
-// 'int' is a primitive type, 'Integer' is a wrapper.
+import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
@@ -14,32 +15,34 @@ import lombok.NoArgsConstructor;
 public class Author {
 
     @Id
-    @GeneratedValue(
-            strategy = GenerationType.TABLE,
-            generator = "author_id_gen"
-    )
-    @TableGenerator(
-            name = "author_id_gen",
-            table = "id_generator",
-            pkColumnName = "id",
-            valueColumnName = "id_value",
-            allocationSize = 1
-    )
-    /*
-    @SequenceGenerator(
-            name = "author_sequence",
-            sequenceName = "author_sequence",
-            allocationSize = 1
-    )
-    */
+    @GeneratedValue
     private Integer id;
 
+    @Column(
+            name = "f_name",
+            length = 35
+    )
     private String firstName;
 
     private String lastName;
 
+    @Column(
+            unique = true,
+            nullable = false
+    )
     private String email;
 
     private Integer age;
+
+    @Column(
+            updatable = false,
+            nullable = false
+    )
+    private LocalDateTime createdAt;
+
+    @Column(
+            insertable = false
+    )
+    private LocalDateTime lastModifiedAt;
 
 }
