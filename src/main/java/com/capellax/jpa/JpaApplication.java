@@ -14,20 +14,20 @@ public class JpaApplication {
 		SpringApplication.run(JpaApplication.class, args);
 	}
 
-	@Bean
-	public CommandLineRunner commandLineRunner(
-			AuthorRepository authorRepository
-	) {
-		return args -> {
-			var author = Author.builder()
-					.firstName("John")
-					.lastName("Doe")
-					.age(25)
-					.email("john@email.com")
-					.build();
-
-			authorRepository.save(author);
-		};
-	}
+//	@Bean
+//	public CommandLineRunner commandLineRunner(
+//			AuthorRepository authorRepository
+//	) {
+//		return args -> {
+//			var author = Author.builder()
+//					.firstName("John")
+//					.lastName("Doe")
+//					.age(25)
+//					.email("john@email.com")
+//					.build();
+//
+//			authorRepository.save(author);
+//		};
+//	}
 
 }
