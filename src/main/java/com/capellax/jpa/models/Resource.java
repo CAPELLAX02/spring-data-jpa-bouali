@@ -1,16 +1,21 @@
 package com.capellax.jpa.models;
 
 import jakarta.persistence.*;
-import lombok.*;
-import lombok.experimental.SuperBuilder;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@EqualsAndHashCode(callSuper = true)
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@SuperBuilder
+@Builder
 @Entity
-public class Resource extends BaseEntity {
+public class Resource {
+
+    @Id
+    @GeneratedValue
+    private Integer id;
 
     private String name;
 
