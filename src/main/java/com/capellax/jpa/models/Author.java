@@ -1,23 +1,24 @@
 package com.capellax.jpa.models;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToMany;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 import java.util.List;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+// @Builder
+@SuperBuilder
 @Entity
-public class Author {
-
-    @Id
-    @GeneratedValue
-    private Integer id;
+public class Author extends BaseEntity {
 
     private String firstName;
 
