@@ -24,4 +24,5 @@ public class Lecture {
             name = "section_id"
     )
     private Section section;
+
 }

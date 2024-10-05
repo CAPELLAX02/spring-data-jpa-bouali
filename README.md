@@ -51,14 +51,14 @@ Before you begin, ensure you have the following tools installed:
 
 3. **Run PostgreSQL with Docker:**
    ```bash
-   docker run --name my_postgres -e POSTGRES_PASSWORD=123456 -d -p 5433:5432 postgres
+   docker run --name my_postgres -e POSTGRES_PASSWORD=123456 -d -p 5432:5432 postgres
 
 4. **Configure your application.yaml**
    - In your `src/main/resources/application.yaml` file, you need to configure the data source for PostgreSQL. Below is an example configuration with sensitive information hidden:
    ```bash
    spring:
      datasource:
-       url: jdbc:postgresql://localhost:5433/data_jpa_db
+       url: jdbc:postgresql://localhost:5432/data_jpa_db
        username: your_username  # Replace with your PostgreSQL username
        password: your_password  # Replace with your PostgreSQL password
        driver-class-name: org.postgresql.Driver
@@ -74,7 +74,57 @@ Before you begin, ensure you have the following tools installed:
 
 6. **Access the application:**
    - The APIs will be accessible at `http://localhost:8080`.
-   - PostgreSQL will run at `localhost:5433`.
+   - PostgreSQL will run at `localhost:5432`.
+
+## Troubleshooting Docker and PostgreSQL
+
+1. **Check if the Port is in Use**
+- If PostgreSQL fails to start due to a port conflict, you can check if the port is already in use. Run the following command to see which process is using port `5432`:
+
+   ```bash
+  sudo lsof -i :5432
+  
+- If another process is using the port, you can either stop the conflicting process or use different port of your PostgreSQL container.
+
+2. **Stop the Process Using the Port**
+- If you find that another process is using the port, you can stop it using its process ID (PID)
+
+   ```bash
+  sudo kill <process_id>
+
+- Alternatively, if you don’t want to stop the process, you can modify the PostgreSQL container to use a different port (e.g., `5433` instead of `5432`).
+
+3. **Run the PostgreSQL Container on a Different Port**
+- To avoid port conflicts, you can specify a different port for your PostgreSQL container. For example:
+
+   ```bash
+  docker run --name my_postgres -e POSTGRES_PASSWORD=123456 -d -p 5433:5432 postgres
+
+- This will map the container's internal port `5432` to the host machine's port `5433`.
+
+4. **List Running and Stopped Containers**
+- To check which containers are currently running, use:
+
+   ```bash
+  sudo docker ps
+
+- To see all containers, including the ones that have stopped, run:
+
+   ```bash
+  sudo docker ps -a
+
+5. **Remove Stopped Containers**
+- If you have stopped containers that you no longer need, you can remove them with the following command:
+
+   ```bash
+  sudo docker rm <container_id>
+  
+- To remove all stopped container at once:
+
+   ```bash
+  sudo docker rm container prune
+
+-  These steps should help resolve common issues when managing PostgreSQL containers using Docker.
 
 ## Contributing
 
