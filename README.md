@@ -71,6 +71,17 @@ Before you begin, ensure you have the following tools installed:
 5. **Run the Spring Boot application:**
    ```bash
    mvn spring-boot:run
+   
+- <u>Quick Note</u>: If you do not have Maven in your machine, you can run the following script to install it:
+    
+    ```bash
+    sudo apt update
+    sudo apt install maven
+  
+- And you can check the version of the Maven by running:
+
+    ```bash
+    mvn -version
 
 6. **Access the application:**
    - The APIs will be accessible at `http://localhost:8080`.
