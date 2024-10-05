@@ -25,4 +25,10 @@ public class Lecture {
     )
     private Section section;
 
+    @OneToOne
+    @JoinColumn(
+            name = "resource_id"
+    )
+    private Resource resource;
+
 }
