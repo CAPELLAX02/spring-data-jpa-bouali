@@ -134,7 +134,16 @@ Before you begin, ensure you have the following tools installed:
 
    ```bash
   sudo docker rm container prune
+  
+6. **Restart a Stopped Container**
+- If your PostgreSQL container has stopped but you don't want to remove it, you can restart it with the following command:
 
+   ```bash
+  sudo docker start <container_id_or_name>
+
+- If this restart command fails due to `"address/port already in use"`-like error, you can again use the `sudo lsof -i :<port_number>` and `sudo kill <process_id>` commands to terminate the process running on that port and then restart the container that's stopped.
+
+###
 -  These steps should help resolve common issues when managing PostgreSQL containers using Docker.
 
 ## Contributing
