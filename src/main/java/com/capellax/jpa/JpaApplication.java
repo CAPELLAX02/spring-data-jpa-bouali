@@ -22,7 +22,6 @@ public class JpaApplication {
 			VideoRepository videoRepository
 	) {
 		return args -> {
-			/*
 			var author = Author.builder()
 					.firstName("John")
 					.lastName("Doe")
@@ -31,7 +30,6 @@ public class JpaApplication {
 					.build();
 
 			authorRepository.save(author);
-			*/
 
 			var video = Video.builder()
 					.name("abc")
