@@ -49,16 +49,64 @@ Before you begin, ensure you have the following tools installed:
    ```bash
    mvn clean install
 
-3. **Run PostgreSQL with Docker:**
+3. **Configure your `pom.xml` file**  
+Ensure that sensitive information is either excluded or made optional in your `pom.xml` file. Below is a breakdown of the essential parts and tips for securing them:
+
+- **Dependencies**: Make sure to include all necessary dependencies for the project, such as `Spring Boot`, `JPA`, `PostgreSQL`, and `Lombok`.
+
+
+- **Excluding Optional Libraries**: Lombok is an optional library, which you can choose to exclude from the build process if needed. The exclusion is defined in the `<build>` section of the `pom.xml`.
+
+Here’s an example of how to handle the sensitive parts of the `pom.xml` file:
+
+```xml
+<properties>
+    <java.version>17</java.version>
+</properties>
+
+<dependencies>
+    <!-- Spring Boot Data JPA -->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-data-jpa</artifactId>
+    </dependency>
+
+    <!-- PostgreSQL Driver -->
+    <dependency>
+        <groupId>org.postgresql</groupId>
+        <artifactId>postgresql</artifactId>
+        <scope>runtime</scope>
+    </dependency>
+
+    <!-- Lombok for reducing boilerplate code -->
+    <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <optional>true</optional>
+    </dependency>
+</dependencies>
+
+<build>
+    <plugins>
+        <!-- Spring Boot Maven Plugin -->
+        <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+        </plugin>
+    </plugins>
+</build>
+```
+
+4. **Run PostgreSQL with Docker:**
    ```bash
    docker run --name my_postgres -e POSTGRES_PASSWORD=123456 -d -p 5432:5432 postgres
 
-4. **Configure your application.yaml**
+5. **Configure your application.yaml**
    - In your `src/main/resources/application.yaml` file, you need to configure the data source for PostgreSQL. Below is an example configuration with sensitive information hidden:
    ```bash
    spring:
      datasource:
-       url: jdbc:postgresql://localhost:5432/data_jpa_db
+       url: jdbc:postgresql://localhost:5432/data_jpa_db # You can change the db name
        username: your_username  # Replace with your PostgreSQL username
        password: your_password  # Replace with your PostgreSQL password
        driver-class-name: org.postgresql.Driver
@@ -68,10 +116,14 @@ Before you begin, ensure you have the following tools installed:
        database: postgresql
        show-sql: true
 
-5. **Run the Spring Boot application:**
+6. **Run the Spring Boot application:**
+
    ```bash
    mvn spring-boot:run
    
+- or if you use an IDE, just run the application (e.g. In IntelliJ IDEA, do `CTRL + F5` to run the Spring Boot application).
+   
+
 - <u>Quick Note</u>: If you do not have Maven in your machine, you can run the following script to install it:
     
     ```bash
